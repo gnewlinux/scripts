@@ -25,7 +25,7 @@ mv CoatedFOGRA27.icc /home/$USER/.local/share/color/icc/CoatedFOGRA27.icc
 fi
 
 echo "Qual o nome do arquivo a ser convertido?"
-ls
+ls -a
 read ARQUIVO
 echo "Qual o nome do arquivo a ser gravado?"
 read GRAVADO
