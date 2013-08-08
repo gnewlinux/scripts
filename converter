@@ -20,6 +20,7 @@ echo "Padrão de cores ICC encontrado!"
 else
 echo "O ICC não foi encontrado o download irá começar..."
 wget http://www.estudiorodapiao.com.br/download/CoatedFOGRA27.icc
+mkdir /home/$USER/.local/share/color/
 mkdir /home/$USER/.local/share/color/icc/
 mv CoatedFOGRA27.icc /home/$USER/.local/share/color/icc/CoatedFOGRA27.icc
 fi
