@@ -1,0 +1,5 @@
+#!/bin/bash
+
+echo "Qual é seu nome"
+read NOME 
+echo "Seu nome è $NOME"
