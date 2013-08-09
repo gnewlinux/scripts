@@ -1,0 +1,20 @@
+#!/bin/bash
+
+while :
+do
+
+echo
+echo "1.: Opcao 1"
+echo "2.: Ocao 2"
+echo "3.: Sair"
+echo
+echo
+echo -n "Digite a opcao desejada: "
+read opcao
+case $opcao in
+1) echo vc teclou a opção 1 ;;
+2) echo vc teclou a opção 2;;
+3) exit ;;
+*) echo "Opção desconhecida." ; echo ;;
+esac
+done
