@@ -1,5 +1,16 @@
 #!/bin/bash
 
+###############################################
+#            ROLADOR DE DADOS v1.0            #
+#                                             #
+# Pequeno script para random de dados D6.     #
+# @utor: feliX                                #
+#                                             #
+###############################################
+
+while [ 1 ]
+do
+
 VALOR1=$((RANDOM%6+1))
 VALOR2=$((RANDOM%6+1))
 VALOR3=$((RANDOM%6+1))
@@ -13,157 +24,203 @@ VALOR10=$((RANDOM%6+1))
 
 clear
 
-echo "Qual a quantidade de dados?"
-read QDADOS
 echo ""
+echo " Qual a quantidade de dados?"
 echo "------------------------------"
-echo ""
+read QDADOS
 
 clear
 
 if [ $QDADOS -eq 0 ]
 then
 echo ""
-echo "O número 0 é inválido"
-echo "------------------------------"
+echo " O número 0 é inválido, digite um número de 1 a 10."
 echo ""
+echo "-----------------------------------------------------------------"
+echo "Precione qualquer tecla para continuar, para sair aperte Ctrl + C"
+read
 
 elif [ $QDADOS -eq 1 ]
 then
-echo "Sua escolha foi: $QDADOS dado."
-echo "O resultado é: $VALOR1"
+echo ""
+echo " Sua escolha foi: $QDADOS dado."
+echo "------------------------------"
+echo " Resultado: $VALOR1"
+echo ""
+echo "-----------------------------------------------------------------"
+echo "Precione qualquer tecla para continuar, para sair aperte Ctrl + C"
+read
 
 elif [ $QDADOS -eq 2 ]
 then
-echo "Sua escolha foi: $QDADOS dados."
-echo "------------------------------"
-echo "1 Dado: $VALOR1"
-echo "2 Dado: $VALOR2"
-echo "------------------------------"
-echo "O resultado é: $((VALOR1+VALOR2))"
 echo ""
+echo " Sua escolha foi: $QDADOS dados."
+echo "------------------------------"
+echo " - 1 Dado: $VALOR1"
+echo " - 2 Dado: $VALOR2"
+echo "------------------------------"
+echo " - Resultado: $((VALOR1+VALOR2))"
+echo ""
+echo "-----------------------------------------------------------------"
+echo "Precione qualquer tecla para continuar, para sair aperte Ctrl + C"
+read
 
 elif [ $QDADOS -eq 3 ]
 then
-echo "Sua escolha foi: $QDADOS dados."
-echo "-------------------------------"
-echo "1 Dado: $VALOR1"
-echo "2 Dado: $VALOR2"
-echo "3 Dado: $VALOR3"
-echo "-------------------------------"
-echo "O resultado é: $((VALOR1+VALOR2+VALOR3))"
 echo ""
+echo " Sua escolha foi: $QDADOS dados."
+echo "-------------------------------"
+echo " - 1 Dado: $VALOR1"
+echo " - 2 Dado: $VALOR2"
+echo " - 3 Dado: $VALOR3"
+echo "-------------------------------"
+echo " - Resultado: $((VALOR1+VALOR2+VALOR3))"
+echo ""
+echo "-----------------------------------------------------------------"
+echo "Precione qualquer tecla para continuar, para sair aperte Ctrl + C"
+read
 
 elif [ $QDADOS -eq 4 ]
 then
-echo "Sua escolha foi: $QDADOS dados."
-echo "-------------------------------"
-echo "1 Dado: $VALOR1"
-echo "2 Dado: $VALOR2"
-echo "3 Dado: $VALOR3"
-echo "4 Dado: $VALOR4"
-echo "-------------------------------"
-echo "O resultado é: $((VALOR1+VALOR2+VALOR3+VALOR4))"
 echo ""
+echo " Sua escolha foi: $QDADOS dados."
+echo "-------------------------------"
+echo " - 1 Dado: $VALOR1"
+echo " - 2 Dado: $VALOR2"
+echo " - 3 Dado: $VALOR3"
+echo " - 4 Dado: $VALOR4"
+echo "-------------------------------"
+echo " - Resultado: $((VALOR1+VALOR2+VALOR3+VALOR4))"
+echo ""
+echo "-----------------------------------------------------------------"
+echo "Precione qualquer tecla para continuar, para sair aperte Ctrl + C"
+read
 
 elif [ $QDADOS -eq 5 ]
 then
-echo "Sua escolha foi: $QDADOS dados."
-echo "-------------------------------"
-echo "1 Dado: $VALOR1"
-echo "2 Dado: $VALOR2"
-echo "3 Dado: $VALOR3"
-echo "4 Dado: $VALOR4"
-echo "5 Dado: $VALOR5"
-echo "-------------------------------"
-echo "O resultado é: $((VALOR1+VALOR2+VALOR3+VALOR4+VALOR5))"
 echo ""
+echo " Sua escolha foi: $QDADOS dados."
+echo "-------------------------------"
+echo " - 1 Dado: $VALOR1"
+echo " - 2 Dado: $VALOR2"
+echo " - 3 Dado: $VALOR3"
+echo " - 4 Dado: $VALOR4"
+echo " - 5 Dado: $VALOR5"
+echo "-------------------------------"
+echo " - Resultado: $((VALOR1+VALOR2+VALOR3+VALOR4+VALOR5))"
+echo ""
+echo "-----------------------------------------------------------------"
+echo "Precione qualquer tecla para continuar, para sair aperte Ctrl + C"
+read
 
 elif [ $QDADOS -eq 6 ]
 then
-echo "Sua escolha foi: $QDADOS dados."
-echo "-------------------------------"
-echo "1 Dado: $VALOR1"
-echo "2 Dado: $VALOR2"
-echo "3 Dado: $VALOR3"
-echo "4 Dado: $VALOR4"
-echo "5 Dado: $VALOR5"
-echo "6 Dado: $VALOR6"
-echo "-------------------------------"
-echo "O resultado é: $((VALOR1+VALOR2+VALOR3+VALOR4+VALOR5+VALOR6))"
 echo ""
+echo " Sua escolha foi: $QDADOS dados."
+echo "-------------------------------"
+echo " - 1 Dado: $VALOR1"
+echo " - 2 Dado: $VALOR2"
+echo " - 3 Dado: $VALOR3"
+echo " - 4 Dado: $VALOR4"
+echo " - 5 Dado: $VALOR5"
+echo " - 6 Dado: $VALOR6"
+echo "-------------------------------"
+echo " - Resultado: $((VALOR1+VALOR2+VALOR3+VALOR4+VALOR5+VALOR6))"
+echo ""
+echo "-----------------------------------------------------------------"
+echo "Precione qualquer tecla para continuar, para sair aperte Ctrl + C"
+read
 
 elif [ $QDADOS -eq 7 ]
 then
-echo "Sua escolha foi: $QDADOS dados."
-echo "-------------------------------"
-echo "1 Dado: $VALOR1"
-echo "2 Dado: $VALOR2"
-echo "3 Dado: $VALOR3"
-echo "4 Dado: $VALOR4"
-echo "5 Dado: $VALOR5"
-echo "6 Dado: $VALOR6"
-echo "7 Dado: $VALOR7"
-echo "-------------------------------"
-echo "O resultado é: $((VALOR1+VALOR2+VALOR3+VALOR4+VALOR5+VALOR6+VALOR7))"
 echo ""
+echo " Sua escolha foi: $QDADOS dados."
+echo "-------------------------------"
+echo " - 1 Dado: $VALOR1"
+echo " - 2 Dado: $VALOR2"
+echo " - 3 Dado: $VALOR3"
+echo " - 4 Dado: $VALOR4"
+echo " - 5 Dado: $VALOR5"
+echo " - 6 Dado: $VALOR6"
+echo " - 7 Dado: $VALOR7"
+echo "-------------------------------"
+echo " - Resultado: $((VALOR1+VALOR2+VALOR3+VALOR4+VALOR5+VALOR6+VALOR7))"
+echo ""
+echo "-----------------------------------------------------------------"
+echo "Precione qualquer tecla para continuar, para sair aperte Ctrl + C"
+read
 
 elif [ $QDADOS -eq 8 ]
 then
-echo "Sua escolha foi: $QDADOS dados."
-echo "-------------------------------"
-echo "1 Dado: $VALOR1"
-echo "2 Dado: $VALOR2"
-echo "3 Dado: $VALOR3"
-echo "4 Dado: $VALOR4"
-echo "5 Dado: $VALOR5"
-echo "6 Dado: $VALOR6"
-echo "7 Dado: $VALOR7"
-echo "8 Dado: $VALOR8"
-echo "-------------------------------"
-echo "O resultado é: $((VALOR1+VALOR2+VALOR3+VALOR4+VALOR5+VALOR6+VALOR7+VALOR8))"
 echo ""
+echo " Sua escolha foi: $QDADOS dados."
+echo "-------------------------------"
+echo " - 1 Dado: $VALOR1"
+echo " - 2 Dado: $VALOR2"
+echo " - 3 Dado: $VALOR3"
+echo " - 4 Dado: $VALOR4"
+echo " - 5 Dado: $VALOR5"
+echo " - 6 Dado: $VALOR6"
+echo " - 7 Dado: $VALOR7"
+echo " - 8 Dado: $VALOR8"
+echo "-------------------------------"
+echo " - Resultado: $((VALOR1+VALOR2+VALOR3+VALOR4+VALOR5+VALOR6+VALOR7+VALOR8))"
+echo ""
+echo "-----------------------------------------------------------------"
+echo "Precione qualquer tecla para continuar, para sair aperte Ctrl + C"
+read
 
 elif [ $QDADOS -eq 9 ]
 then
-echo "Sua escolha foi: $QDADOS dados."
-echo "-------------------------------"
-echo "1 Dado: $VALOR1"
-echo "2 Dado: $VALOR2"
-echo "3 Dado: $VALOR3"
-echo "4 Dado: $VALOR4"
-echo "5 Dado: $VALOR5"
-echo "6 Dado: $VALOR6"
-echo "7 Dado: $VALOR7"
-echo "8 Dado: $VALOR8"
-echo "9 Dado: $VALOR9"
-echo "-------------------------------"
-echo "O resultado é: $((VALOR1+VALOR2+VALOR3+VALOR4+VALOR5+VALOR6+VALOR7+VALOR8+VALOR9))"
 echo ""
+echo " Sua escolha foi: $QDADOS dados."
+echo "-------------------------------"
+echo " - 1 Dado: $VALOR1"
+echo " - 2 Dado: $VALOR2"
+echo " - 3 Dado: $VALOR3"
+echo " - 4 Dado: $VALOR4"
+echo " - 5 Dado: $VALOR5"
+echo " - 6 Dado: $VALOR6"
+echo " - 7 Dado: $VALOR7"
+echo " - 8 Dado: $VALOR8"
+echo " - 9 Dado: $VALOR9"
+echo "-------------------------------"
+echo " - Resultado: $((VALOR1+VALOR2+VALOR3+VALOR4+VALOR5+VALOR6+VALOR7+VALOR8+VALOR9))"
+echo ""
+echo "-----------------------------------------------------------------"
+echo "Precione qualquer tecla para continuar, para sair aperte Ctrl + C"
+read
 
 elif [ $QDADOS -eq 10 ]
 then
-echo "Sua escolha foi: $QDADOS dados."
-echo "-------------------------------"
-echo "1 Dado: $VALOR1"
-echo "2 Dado: $VALOR2"
-echo "3 Dado: $VALOR3"
-echo "4 Dado: $VALOR4"
-echo "5 Dado: $VALOR5"
-echo "6 Dado: $VALOR6"
-echo "7 Dado: $VALOR7"
-echo "8 Dado: $VALOR8"
-echo "9 Dado: $VALOR9"
-echo "10 Dado: $VALOR10"
-echo "-------------------------------"
-echo "O resultado é: $((VALOR1+VALOR2+VALOR3+VALOR4+VALOR5+VALOR6+VALOR7+VALOR8+VALOR9+VALOR10))"
 echo ""
+echo " Sua escolha foi: $QDADOS dados."
+echo "-------------------------------"
+echo " - 1 Dado: $VALOR1"
+echo " - 2 Dado: $VALOR2"
+echo " - 3 Dado: $VALOR3"
+echo " - 4 Dado: $VALOR4"
+echo " - 5 Dado: $VALOR5"
+echo " - 6 Dado: $VALOR6"
+echo " - 7 Dado: $VALOR7"
+echo " - 8 Dado: $VALOR8"
+echo " - 9 Dado: $VALOR9"
+echo " - 10 Dado: $VALOR10"
+echo "-------------------------------"
+echo " - Resultado: $((VALOR1+VALOR2+VALOR3+VALOR4+VALOR5+VALOR6+VALOR7+VALOR8+VALOR9+VALOR10))"
+echo ""
+echo "-----------------------------------------------------------------"
+echo "Precione qualquer tecla para continuar, para sair aperte Ctrl + C"
+read
 
 else
 echo ""
-echo "O número é inválido, digite de 1 a 10"
-echo "------------------------------"
+echo " O número é inválido, digite de 1 a 10"
 echo ""
+echo "-----------------------------------------------------------------"
+echo "Precione qualquer tecla para continuar, para sair aperte Ctrl + C"
+read
+
 fi
 
-exit 0
+done
