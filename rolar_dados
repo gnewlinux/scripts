@@ -31,6 +31,17 @@ read QDADOS
 
 clear
 
+if [[ $QDADOS != ?(+|-)+([0-9]) ]]
+then
+echo ""
+echo " Por favor digite somente números de 1 a 10."
+echo ""
+echo "-----------------------------------------------------------------"
+echo "Precione qualquer tecla para continuar, para sair aperte Ctrl + C"
+read
+
+else
+
 if [ $QDADOS -eq 0 ]
 then
 echo ""
@@ -220,6 +231,8 @@ echo ""
 echo "-----------------------------------------------------------------"
 echo "Precione qualquer tecla para continuar, para sair aperte Ctrl + C"
 read
+
+fi
 
 fi
 
