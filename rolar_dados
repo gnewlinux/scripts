@@ -1,0 +1,169 @@
+#!/bin/bash
+
+VALOR1=$((RANDOM%6+1))
+VALOR2=$((RANDOM%6+1))
+VALOR3=$((RANDOM%6+1))
+VALOR4=$((RANDOM%6+1))
+VALOR5=$((RANDOM%6+1))
+VALOR6=$((RANDOM%6+1))
+VALOR7=$((RANDOM%6+1))
+VALOR8=$((RANDOM%6+1))
+VALOR9=$((RANDOM%6+1))
+VALOR10=$((RANDOM%6+1))
+
+clear
+
+echo "Qual a quantidade de dados?"
+read QDADOS
+echo ""
+echo "------------------------------"
+echo ""
+
+clear
+
+if [ $QDADOS -eq 0 ]
+then
+echo ""
+echo "O número 0 é inválido"
+echo "------------------------------"
+echo ""
+
+elif [ $QDADOS -eq 1 ]
+then
+echo "Sua escolha foi: $QDADOS dado."
+echo "O resultado é: $VALOR1"
+
+elif [ $QDADOS -eq 2 ]
+then
+echo "Sua escolha foi: $QDADOS dados."
+echo "------------------------------"
+echo "1 Dado: $VALOR1"
+echo "2 Dado: $VALOR2"
+echo "------------------------------"
+echo "O resultado é: $((VALOR1+VALOR2))"
+echo ""
+
+elif [ $QDADOS -eq 3 ]
+then
+echo "Sua escolha foi: $QDADOS dados."
+echo "-------------------------------"
+echo "1 Dado: $VALOR1"
+echo "2 Dado: $VALOR2"
+echo "3 Dado: $VALOR3"
+echo "-------------------------------"
+echo "O resultado é: $((VALOR1+VALOR2+VALOR3))"
+echo ""
+
+elif [ $QDADOS -eq 4 ]
+then
+echo "Sua escolha foi: $QDADOS dados."
+echo "-------------------------------"
+echo "1 Dado: $VALOR1"
+echo "2 Dado: $VALOR2"
+echo "3 Dado: $VALOR3"
+echo "4 Dado: $VALOR4"
+echo "-------------------------------"
+echo "O resultado é: $((VALOR1+VALOR2+VALOR3+VALOR4))"
+echo ""
+
+elif [ $QDADOS -eq 5 ]
+then
+echo "Sua escolha foi: $QDADOS dados."
+echo "-------------------------------"
+echo "1 Dado: $VALOR1"
+echo "2 Dado: $VALOR2"
+echo "3 Dado: $VALOR3"
+echo "4 Dado: $VALOR4"
+echo "5 Dado: $VALOR5"
+echo "-------------------------------"
+echo "O resultado é: $((VALOR1+VALOR2+VALOR3+VALOR4+VALOR5))"
+echo ""
+
+elif [ $QDADOS -eq 6 ]
+then
+echo "Sua escolha foi: $QDADOS dados."
+echo "-------------------------------"
+echo "1 Dado: $VALOR1"
+echo "2 Dado: $VALOR2"
+echo "3 Dado: $VALOR3"
+echo "4 Dado: $VALOR4"
+echo "5 Dado: $VALOR5"
+echo "6 Dado: $VALOR6"
+echo "-------------------------------"
+echo "O resultado é: $((VALOR1+VALOR2+VALOR3+VALOR4+VALOR5+VALOR6))"
+echo ""
+
+elif [ $QDADOS -eq 7 ]
+then
+echo "Sua escolha foi: $QDADOS dados."
+echo "-------------------------------"
+echo "1 Dado: $VALOR1"
+echo "2 Dado: $VALOR2"
+echo "3 Dado: $VALOR3"
+echo "4 Dado: $VALOR4"
+echo "5 Dado: $VALOR5"
+echo "6 Dado: $VALOR6"
+echo "7 Dado: $VALOR7"
+echo "-------------------------------"
+echo "O resultado é: $((VALOR1+VALOR2+VALOR3+VALOR4+VALOR5+VALOR6+VALOR7))"
+echo ""
+
+elif [ $QDADOS -eq 8 ]
+then
+echo "Sua escolha foi: $QDADOS dados."
+echo "-------------------------------"
+echo "1 Dado: $VALOR1"
+echo "2 Dado: $VALOR2"
+echo "3 Dado: $VALOR3"
+echo "4 Dado: $VALOR4"
+echo "5 Dado: $VALOR5"
+echo "6 Dado: $VALOR6"
+echo "7 Dado: $VALOR7"
+echo "8 Dado: $VALOR8"
+echo "-------------------------------"
+echo "O resultado é: $((VALOR1+VALOR2+VALOR3+VALOR4+VALOR5+VALOR6+VALOR7+VALOR8))"
+echo ""
+
+elif [ $QDADOS -eq 9 ]
+then
+echo "Sua escolha foi: $QDADOS dados."
+echo "-------------------------------"
+echo "1 Dado: $VALOR1"
+echo "2 Dado: $VALOR2"
+echo "3 Dado: $VALOR3"
+echo "4 Dado: $VALOR4"
+echo "5 Dado: $VALOR5"
+echo "6 Dado: $VALOR6"
+echo "7 Dado: $VALOR7"
+echo "8 Dado: $VALOR8"
+echo "9 Dado: $VALOR9"
+echo "-------------------------------"
+echo "O resultado é: $((VALOR1+VALOR2+VALOR3+VALOR4+VALOR5+VALOR6+VALOR7+VALOR8+VALOR9))"
+echo ""
+
+elif [ $QDADOS -eq 10 ]
+then
+echo "Sua escolha foi: $QDADOS dados."
+echo "-------------------------------"
+echo "1 Dado: $VALOR1"
+echo "2 Dado: $VALOR2"
+echo "3 Dado: $VALOR3"
+echo "4 Dado: $VALOR4"
+echo "5 Dado: $VALOR5"
+echo "6 Dado: $VALOR6"
+echo "7 Dado: $VALOR7"
+echo "8 Dado: $VALOR8"
+echo "9 Dado: $VALOR9"
+echo "10 Dado: $VALOR10"
+echo "-------------------------------"
+echo "O resultado é: $((VALOR1+VALOR2+VALOR3+VALOR4+VALOR5+VALOR6+VALOR7+VALOR8+VALOR9+VALOR10))"
+echo ""
+
+else
+echo ""
+echo "O número é inválido, digite de 1 a 10"
+echo "------------------------------"
+echo ""
+fi
+
+exit 0

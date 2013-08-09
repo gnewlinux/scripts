@@ -1,0 +1,33 @@
+#!/bin/bash
+ICCOK=0
+
+clear
+echo "    ____              __          ____   _"
+echo "   / __ + ____   ____/ /____ _   / __ + (_)____ _ ____"
+echo "  / /_/ // __ + / __  // __ +/  / /_/ // // __ +// __ +"
+echo " / _+ _// /_/ // /_/ // /_/ /  / ____// // /_/ // /_/ /"
+echo "/_/ |_| +____/ +__,_/ +__,_/  /_/    /_/ +__,_/ +____/(_)"
+echo ""
+echo "Seja bem vindo ao conversor CMKY da Roda Pião! v 0.1.2"
+echo "Você está logado como: $USER"
+echo "Procurando arquivo padrão ICC..."
+test -f "/home/$USER/.local/share/color/icc/CoatedFOGRA27.icc" || ICCOK=1
+
+if [ $ICCOK -eq 0 ]
+then
+echo "Padrão de cores ICC encontrado!"
+else
+echo "O ICC não foi encontrado o download irá começar..."
+wget http://www.estudiorodapiao.com.br/download/CoatedFOGRA27.icc
+mkdir /home/$USER/.local/share/color/
+mkdir /home/$USER/.local/share/color/icc/
+mv CoatedFOGRA27.icc /home/$USER/.local/share/color/icc/CoatedFOGRA27.icc
+fi
+
+echo "Qual o nome do arquivo a ser convertido?"
+ls -a
+read ARQUIVO
+echo "Qual o nome do arquivo a ser gravado?"
+read GRAVADO
+convert -colorspace CMYK -profile ~/.local/share/color/icc/CoatedFOGRA27.icc $ARQUIVO $GRAVADO
+echo "Sua imagem foi gerada sucesso!"
