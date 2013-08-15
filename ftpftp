@@ -1,0 +1,41 @@
+#!/bin/bash
+
+###############################################
+#                 FTPFTP v1.0                 #
+#                                             #
+# Pequeno script para facilitação de controle #
+# em ftp.                                     #
+# @utor: feliX                                #
+#                                             #
+###############################################
+
+clear
+
+# Read input ftp server
+echo ""
+echo "Insira o servidor ftp:"
+echo ""
+read FTP
+echo "Usuario:"
+read USUARIO
+echo "Senha:"
+read SENHA
+echo ""
+echo "Conectando..."
+
+HOST=$FTP
+USER=$USUARIO
+PASSWD=$SENHA
+FILE='file.txt'
+INDEX='indexOKOKOK.html'
+
+ftp -n $HOST <<END_SCRIPT
+quote USER $USER
+quote PASS $PASSWD
+put $FILE
+get $INDEX
+quit
+END_SCRIPT
+exit 0
+
+
