@@ -1,2 +1,15 @@
 #!/bin/bash
 echo "teste"
+case "$1" in
+
+	'start')
+	echo "START"
+	;;
+
+	'status')
+	echo "STATUS"
+	;;
+
+*)
+	echo "Procedimento ........ ok"
+esac

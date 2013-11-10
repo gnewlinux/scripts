@@ -1,0 +1,11 @@
+#!/bin/bash
+
+if [ "$UID" != "0" ]; then
+   echo "Logue como administrador..."
+   exit
+fi
+
+while sleep 2s; do
+   echo "Criando backup... $(date +%d%m%Y)"
+   tar -cz /home >/var/backup/home$(date +%d%m%Y).tar.gz
+done

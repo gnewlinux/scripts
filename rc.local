@@ -1,0 +1,34 @@
+ 
+#!/bin/sh
+#
+# /etc/rc.d/rc.local:  Local system initialization script.
+#
+# Put any local startup commands in here.  Also, if you have
+# anything that needs to be run at shutdown time you can
+# make an /etc/rc.d/rc.local_shutdown script and put those
+# commands in there.
+
+# CONFIGURAÇÃO DAS INTERFACES DA REDE.
+# Subir intarface ligada ao modem pppoe: eth0.
+ifconfig eth0 10.1.1.2 netmask 255.255.255.0 up
+# Atribuindo ip e mascara de rede para interface ligada a LAN: eth1.
+ifconfig eth1 172.16.0.1 netmask 255.255.255.0
+
+# CONEXÃO COM INTERNET VIA MODEM ADSL.
+# Discar conexão pppoe.
+pppoe-start
+
+# CONFIGURAÇÕES DO SERVIDOR DHCP
+# Inicio do dhcpd
+/etc/rc.d/rc.dhcpd start
+# Testa o dhcpd. Se caso não estiver ligado, reinstarta o servico.
+IDDHCPD=$(pidof dhcpd)
+if [ "$IDDHCPD" == "" ]; then
+/etc/rc.d/rc.dhcpd restart
+fi
+# Status do dhcpd
+/etc/rc.d/rc.dhcpd status
+
+# CONFIGURAÇÃO DO FIREWALL
+# Inicio do Firewall
+/etc/rc.d/rc.firewall

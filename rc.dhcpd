@@ -1,0 +1,51 @@
+!/bin/bash
+# Controle do servidor DHCP. Start | Stop | Restart | Status.
+
+# Variável referente a interface ligada a LAN.
+INTERFACE="eth1"
+
+# Inicia CASE de dinamicas para serviço DHCP.
+case "$1" in
+
+# Start no serviço DHCP na interface selecionada.
+        'start')
+        echo "DHCPD .............................. START"
+        dhcpd $INTERFACE
+        ;;
+
+# Stop no serviço DHCP.
+        'stop')
+        echo "DHCPD .............................. STOP"
+        killall dhcpd
+        ;;
+
+# Stop no serviço DHCP. Start no serviço DHCP na interface selecionada.
+        'restart')
+        echo "DHCPD .............................. STOP"
+        killall dhcpd
+        echo "DHCPD .............................. START"
+        dhcpd $INTERFACES
+        ;;
+
+# Status do serviço DHCPD.
+        'status')
+        echo "DHCPD .............................. STATUS"
+# Variável de id do serviço dhcpd.
+        IDDHCPD=$(pidof dhcpd)
+        if [ "$IDDHCPD" == "" ];
+        then
+        echo "DHCPD não está funcionando!"
+        else
+        echo "DHCPD está funcionando seu id é:${IDDHCPD}."
+        fi
+        ;;
+
+*)
+        echo "Uso: $0 {start|stop|restart|status}"
+        echo "Finalizando script de Controle do servidor DHCP"
+
+# Finaliza CASE
+esac
+
+
+ 
