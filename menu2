@@ -5,16 +5,16 @@ Principal () {
 	echo " ---------- "
 	echo " Opções:"
 	echo
-	echo "1. Transformar nomes de arquivos"
+	echo "1. Renomear nomes de arquivos"
 	echo "2. Adicionar um usúario no sistema"
 	echo "3. Deletar um usúario no sistema"
-	echo "4. Fazer backup dos arquivos /etc"
+	echo "4. Fazer backup dos arquivos /var/log"
 	echo "5. Sair"
 	echo
 	echo -n "Qual a opção desejada? "
 	read opcao
 	case $opcao in
-		1) Transformar ;;
+		1) Renomear ;;
 		2) Adicionar ;;
 		3) Deletar ;;
 		4) Backup ;;
@@ -23,7 +23,7 @@ Principal () {
 	esac
 }
 
-Transformar() {
+Renomear() {
 	clear
 	echo -n "Para Maiúsculo ou minúsculo? [M/m] "
 	read var
@@ -69,8 +69,7 @@ Deletar() {
 
 Backup() {
 	for x in '/bin/ls' /etc; do
-	cp -R /etc/$x /etc/$x.bck
-	mv /etc/$x.bck / usr/backup
+	cp -R /var/log/$x /tmp/$x.bck
 	done
 }
 
