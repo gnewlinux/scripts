@@ -1,11 +1,30 @@
 #!/bin/bash
+# Canivete
+# Programa de auxilio gnu/linux
+
+# ferramentas a incorporar:
+# descompactar / compactar
+# player mp3
+# acesso a web (links)
+# listar partições
+# montar cdrom
+# abrir pendrive
+# visualizar drivers pci
+# visualizar usbs
+# visualizar ip externo
+# atualizar sistema
+# data e hora
+# localizar arquivos
+# localizar arquivos repitidos via SDS5m
+# editor texto
+
 
 Principal () {
 	echo " Menu TESTE "
 	echo " ---------- "
 	echo " Opções:"
 	echo
-	echo "1. Renomear nomes de arquivos"
+	echo "1. Renomear nomes de arquivos M/m"
 	echo "2. Adicionar um usúario no sistema"
 	echo "3. Deletar um usúario no sistema"
 	echo "4. Fazer backup dos arquivos /var/log"

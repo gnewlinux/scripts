@@ -1,0 +1,127 @@
+#!/bin/bash
+# Canivete
+# Programa de auxilio gnu/linux
+
+# ferramentas a incorporar:
+# descompactar / compactar
+# player mp3
+# acesso a web (links)
+# listar partições
+# montar cdrom
+# abrir pendrive
+# visualizar drivers pci
+# visualizar usbs
+# visualizar ip externo
+# atualizar sistema
+## data e hora
+## localizar arquivos
+# localizar arquivos repitidos via SDS5m
+# editor texto
+# nivel de bateria
+
+clear
+
+Principal () {
+	echo "   ------------------------------------------------------------ "
+	echo "   -                                                          - "
+	echo "   -                     CANIVETE v0.01                       - "
+	echo "   -                                                          - "
+	echo "   ------------------------------------------------------------ "
+	echo " "
+	echo "                            Opções :"
+	echo " "
+	echo "                        1. Data e Hora"
+	echo "                     2. Localizar arquivo"
+	echo "               3. Renomear nomes de arquivos M/m"
+	echo "               4. Adicionar um usúario no sistema"
+	echo "                5. Deletar um usúario no sistema"
+	echo "              6. Fazer backup dos arquivos /var/log"
+	echo "                            7. Sair"
+	echo
+	echo -n "                    Qual a opção desejada? "
+	read opcao
+	case $opcao in
+		1) Dataehora ;;
+		2) Localizar ;;
+		3) Renomear ;;
+		4) Adicionar ;;
+		5) Deletar ;;
+		6) Backup ;;
+		7) exit ;;
+		*) "Opção desconhecida" ; echo ; Principal ;;
+	esac
+}
+
+Dataehora() {
+	clear
+	date
+	sleep 2s
+	Principal
+}
+
+Localizar() {
+	clear
+	echo -n "Qual nome do arquivo? "
+	read localizar
+	locate $localizar
+	sleep 2s
+#	echo -n "Pesquisar novo arquivo? S/n"
+#	read localizarsn
+#	if [ $localizarsn = "S"]; then
+#	Localizar
+#	fi
+#	done
+	Principal
+}
+
+Renomear() {
+	clear
+	echo -n "Para Maiúsculo ou minúsculo? [M/m] "
+	read var
+	if [ $var = "M" ]; then
+		echo -n "Que diretório? "
+		read dir
+
+		for x in '/bin/ls' $dir; do
+		y='echo $x | tr '[:lower:]' '[:upper:]'
+		if [ ! -e $y ]; then
+		mv $v $y
+		fi
+	done
+
+	elif [ $var = "m" ]; then
+		echo -n "Que diretório? "
+		read dir
+
+		for x in '/bin/ls' $dir; do
+		y='echo $x | tr '[:upper:]' '[:lower:]'
+		if [ ! -e $y ]; then
+		mv $x $y
+		fi
+	done
+	fi
+}
+
+Adicionar() {
+	clear
+	echo -n "Qual o nome do usúario a se adicionar? "
+	read nome
+	adduser nome
+	Principal
+}
+
+Deletar() {
+	clear
+	echo -n "Qual o nome do usúario a deletar? "
+	read nome
+	userdel nome
+	Principal
+}
+
+Backup() {
+	for x in '/bin/ls' /etc; do
+	cp -R /var/log/$x /tmp/$x.bck
+	done
+}
+
+Principal
