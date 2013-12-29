@@ -1,14 +1,26 @@
 #!/bin/bash
+# Script de contagem de minutos da maquina em uso.
+# Para testes de bateria de notebook.
+# @utor féliX | 13
+# Arquivo a /bin/contador
+# Em /etc/init.d/rc.local acrentar na ultima linha o comando: contador
+
 
 n=1
 
 while [ $n -le 100000 ]
 do
-sleep 60s
-date >> ~/.log/contador.log
-echo "- Uso da bateria: " >> ~/.log/contador.log
-acpi -i >> ~/.log/contador.log
-echo "- Tempo de uso: $n minutos" >> ~/.log/contador.log
-echo " " >> ~/.log/contador.log
-echo " " >> ~/.log/contador.log
+	echo "************* Time Use **************" >> /var/log/contador.log
+	date >> /var/log/contador.log
+	echo "- Uso de memoria: " >> /var/log/contador.log
+	free -h | grep M >> /var/log/contador.log
+	echo "- Uso da bateria: " >> /var/log/contador.log
+	acpi >> /var/log/contador.log
+	echo "- Tempo de uso: $n minutos" >> /var/log/contador.log
+	echo "....................................." >> /var/log/contador.log
+	echo " "
+
+	(( n++ ))
+
+	sleep 60s
 done
