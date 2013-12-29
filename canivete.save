@@ -13,11 +13,10 @@
 # visualizar usbs
 # visualizar ip externo
 # atualizar sistema
-## data e hora
-## localizar arquivos
+# data e hora
+# localizar arquivos
 # localizar arquivos repitidos via SDS5m
 # editor texto
-# nivel de bateria
 
 clear
 
@@ -30,48 +29,22 @@ Principal () {
 	echo " "
 	echo "                            Opções :"
 	echo " "
-	echo "                        1. Data e Hora"
-	echo "                     2. Localizar arquivo"
-	echo "               3. Renomear nomes de arquivos M/m"
-	echo "               4. Adicionar um usúario no sistema"
-	echo "                5. Deletar um usúario no sistema"
-	echo "              6. Fazer backup dos arquivos /var/log"
-	echo "                            7. Sair"
+	echo "               1. Renomear nomes de arquivos M/m"
+	echo "               2. Adicionar um usúario no sistema"
+	echo "                3. Deletar um usúario no sistema"
+	echo "              4. Fazer backup dos arquivos /var/log"
+	echo "                            5. Sair"
 	echo
-	echo -n "                    Qual a opção desejada? "
+ -n "                                 Qual a opção desejada? "
 	read opcao
 	case $opcao in
-		1) Dataehora ;;
-		2) Localizar ;;
-		3) Renomear ;;
-		4) Adicionar ;;
-		5) Deletar ;;
-		6) Backup ;;
-		7) exit ;;
+		1) Renomear ;;
+		2) Adicionar ;;
+		3) Deletar ;;
+		4) Backup ;;
+		5) exit ;;
 		*) "Opção desconhecida" ; echo ; Principal ;;
 	esac
-}
-
-Dataehora() {
-	clear
-	date
-	sleep 1s
-	Principal
-}
-
-Localizar() {
-	clear
-	echo -n "Qual nome do arquivo? "
-	read localizar
-	locate $localizar
-	sleep 2s
-	echo -n "Pesquisar novo arquivo? s/n:  "
-	read localizarsn
-	if [ $localizarsn = "s" ]; then
-	Localizar
-	fi
-#	done
-	Principal
 }
 
 Renomear() {

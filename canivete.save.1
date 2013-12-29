@@ -1,0 +1,96 @@
+#!/bin/bash
+# Canivete
+# Programa de auxilio gnu/linux
+
+# ferramentas a incorporar:
+# descompactar / compactar
+# player mp3
+# acesso a web (links)
+# listar partições
+# montar cdrom
+# abrir pendrive
+# visualizar drivers pci
+# visualizar usbs
+# visualizar ip externo
+# atualizar sistema
+# data e hora
+# localizar arquivos
+# localizar arquivos repitidos via SDS5m
+# editor texto
+
+clear
+
+Principal () {
+	echo " -------------------------------------------------------------------------- ""
+	echo " ---------- "
+	echo " Opções:"
+	echo
+	echo "1. Renomear nomes de arquivos M/m"
+	echo "2. Adicionar um usúario no sistema"
+	echo "3. Deletar um usúario no sistema"
+	echo "4. Fazer backup dos arquivos /var/log"
+	echo "5. Sair"
+	echo
+	echo -n "Qual a opção desejada? "
+	read opcao
+	case $opcao in
+		1) Renomear ;;
+		2) Adicionar ;;
+		3) Deletar ;;
+		4) Backup ;;
+		5) exit ;;
+		*) "Opção desconhecida" ; echo ; Principal ;;
+	esac
+}
+
+Renomear() {
+	clear
+	echo -n "Para Maiúsculo ou minúsculo? [M/m] "
+	read var
+	if [ $var = "M" ]; then
+		echo -n "Que diretório? "
+		read dir
+
+		for x in '/bin/ls' $dir; do
+		y='echo $x | tr '[:lower:]' '[:upper:]'
+		if [ ! -e $y ]; then
+		mv $v $y
+		fi
+	done
+
+	elif [ $var = "m" ]; then
+		echo -n "Que diretório? "
+		read dir
+
+		for x in '/bin/ls' $dir; do
+		y='echo $x | tr '[:upper:]' '[:lower:]'
+		if [ ! -e $y ]; then
+		mv $x $y
+		fi
+	done
+	fi
+}
+
+Adicionar() {
+	clear
+	echo -n "Qual o nome do usúario a se adicionar? "
+	read nome
+	adduser nome
+	Principal
+}
+
+Deletar() {
+	clear
+	echo -n "Qual o nome do usúario a deletar? "
+	read nome
+	userdel nome
+	Principal
+}
+
+Backup() {
+	for x in '/bin/ls' /etc; do
+	cp -R /var/log/$x /tmp/$x.bck
+	done
+}
+
+Principal

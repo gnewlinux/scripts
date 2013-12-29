@@ -1,0 +1,14 @@
+#!/bin/bash
+
+n=1
+
+while [ $n -le 100000 ]
+do
+sleep 60s
+date >> ~/.log/contador.log
+echo "- Uso da bateria: " >> ~/.log/contador.log
+acpi -i >> ~/.log/contador.log
+echo "- Tempo de uso: $n minutos" >> ~/.log/contador.log
+echo " " >> ~/.log/contador.log
+echo " " >> ~/.log/contador.log
+done
