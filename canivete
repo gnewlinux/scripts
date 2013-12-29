@@ -2,52 +2,55 @@
 # Canivete
 # Programa de auxilio gnu/linux
 
-# ferramentas a incorporar:
-# descompactar / compactar
-# player mp3
-# acesso a web (links)
-# listar partições
-# montar cdrom
-# abrir pendrive
-# visualizar drivers pci
-# visualizar usbs
-# visualizar ip externo
-# atualizar sistema
-## data e hora
-## localizar arquivos
+# ferramentas a incorporar: # descompactar / compactar
+# player mp3 # acesso a web (links)
+# listar partições # montar cdrom
+# abrir pendrive # visualizar drivers pci
+# visualizar usbs # visualizar ip externo
 # localizar arquivos repitidos via SDS5m
-# editor texto
-# nivel de bateria
+# editor texto # nivel de bateria
 
 clear
 
 Principal () {
-	echo "   ------------------------------------------------------------ "
-	echo "   -                                                          - "
-	echo "   -                     CANIVETE v0.01                       - "
-	echo "   -                                                          - "
-	echo "   ------------------------------------------------------------ "
+	echo "         ____________"
+	echo "        \              --------------------________ "
+	echo "      ________________                             --------"
+	echo "     \                ----------------------------_________-- "
+	echo "     --------------------------------------------------------   "
+	echo "   /                                                          \ "
+	echo "   -                       CANIVETE v1.0                      - "
+	echo "   -             >  kit de utlidades // debian  <        @    - "
+	echo "   \                                                          / "
+	echo "     ------------------------------------------------_______-   "
+	echo "           /____________________--------------------            "
 	echo " "
-	echo "                            Opções :"
 	echo " "
-	echo "                        1. Data e Hora"
-	echo "                     2. Localizar arquivo"
-	echo "               3. Renomear nomes de arquivos M/m"
-	echo "               4. Adicionar um usúario no sistema"
-	echo "                5. Deletar um usúario no sistema"
-	echo "              6. Fazer backup dos arquivos /var/log"
-	echo "                            7. Sair"
+	echo "                             Opções :"
+	echo " "
+	echo "                         1. Data e Hora"
+	echo "                       2. Atualizar Sistema"
+	echo "                       3. Localizar Arquivo "
+	echo "               4. Listar usuários cadastrados sitema"
+	echo "                5. Adicionar um usúario no sistema"
+	echo "                 6. Deletar um usúario no sistema"
+	echo "                  7. Compactar arquivos ou pasta"
+	echo "                      8. Descompactar arquivos"
+	echo "                             9. Sair"
 	echo
-	echo -n "                    Qual a opção desejada? "
+	echo -n "                     Qual a opção desejada? "
 	read opcao
 	case $opcao in
 		1) Dataehora ;;
-		2) Localizar ;;
-		3) Renomear ;;
-		4) Adicionar ;;
-		5) Deletar ;;
-		6) Backup ;;
-		7) exit ;;
+		2) Atualizar ;;
+		3) Localizar ;;
+		4) Listar ;;
+		5) Adicionar ;;
+		6) Deletar ;;
+		7) Compactar ;;
+#		7) Backup ;;
+		8) Descompactar ;;
+		9) exit ;;
 		*) "Opção desconhecida" ; echo ; Principal ;;
 	esac
 }
@@ -59,63 +62,122 @@ Dataehora() {
 	Principal
 }
 
-Localizar() {
+Atualizar() {
 	clear
-	echo -n "Qual nome do arquivo? "
-	read localizar
-	locate $localizar
-	sleep 2s
-	echo -n "Pesquisar novo arquivo? s/n:  "
-	read localizarsn
-	if [ $localizarsn = "s" ]; then
-	Localizar
-	fi
-#	done
+	echo "Atualizando o sistma... fazendo update dos repositórios... "
+	sleep 1s
+	apt-get update
+	echo "Iniciando Upgrade dos arquivos... "
+	apt-get upgrade
+	clear
+	echo -n "."
+	sleep 1s
+	echo -n "."
+	sleep 1s
+	echo -n "."
+	sleep 1s
+	echo " Seu sistema está atualizado!!!"
+	echo " "
 	Principal
 }
 
-Renomear() {
+Localizar() {
 	clear
-	echo -n "Para Maiúsculo ou minúsculo? [M/m] "
-	read var
-	if [ $var = "M" ]; then
-		echo -n "Que diretório? "
-		read dir
-
-		for x in '/bin/ls' $dir; do
-		y='echo $x | tr '[:lower:]' '[:upper:]'
-		if [ ! -e $y ]; then
-		mv $v $y
-		fi
-	done
-
-	elif [ $var = "m" ]; then
-		echo -n "Que diretório? "
-		read dir
-
-		for x in '/bin/ls' $dir; do
-		y='echo $x | tr '[:upper:]' '[:lower:]'
-		if [ ! -e $y ]; then
-		mv $x $y
-		fi
-	done
+	echo "Qual o nome do arquivo a localizar? "
+	read varlocalizar
+	echo -n "Pesquisando ."
+	sleep 1s
+	echo -n "."
+	sleep 1s
+	echo "."
+	locate $varlocalizar | more
+	echo " "
+	echo -n "Gostaria de salvar sua pesquisa em uma arquivo de log? s/n :"
+	read varlocalsave
+	if [ $varlocalsave = "s" ]
+	then
+	locate $varlocalizar >> localizar.log
+	clear
+	echo "Arquivo localizar.log criado com sucesso!"
+	sleep 2s
 	fi
+	clear
+	Principal
+}
+
+Listar() {
+	clear
+	cat /etc/passwd | grep bash
+	Principal
 }
 
 Adicionar() {
 	clear
 	echo -n "Qual o nome do usúario a se adicionar? "
 	read nome
-	adduser nome
+	adduser $nome
 	Principal
 }
 
 Deletar() {
 	clear
-	echo -n "Qual o nome do usúario a deletar? "
+	echo "Qual o nome do usúario a deletar? "
 	read nome
-	userdel nome
+	userdel $nome
 	Principal
+}
+
+Compactar() {
+	clear
+	echo -n "Gostaria de compactar arquivo ou pasta? a/p : "
+	read varcompactar
+	if [ $varcompactar = "a" ]
+	then
+	ls
+	echo "Qual origem e nome do arquivo que gostaria de compactar? "
+	read origemcompactar
+	echo "Qual o nome do novo arquivo compactado? "
+	read novocompactar
+	tar -zcf $novocompactar.tar $origemcompactar
+	clear
+	echo "Arquivo $novocompactar.tar criado com sucesso!!"
+	echo " "
+	Principal
+	fi
+	if [ $varcompactar = "p" ]
+	then
+	echo "Qual origem e nome da pasta a ser compactada? "
+	read pastacompactar
+	echo "Qual o nome do novo arquivo compatado? "
+	read novacompactar
+	tar -zcf $novacompactar.tar $pastacompactar
+	echo "Arquivo $novacompactar.tar criado com sucesso!!"
+	echo " "
+	Principal
+	fi
+}
+
+Descompactar() {
+	clear
+	ls
+	echo "Qual arquivo que gostaria de descompactar? // Só não funciona .zip"
+	read arqdescompactar
+	tar -xvsf $arqdescompactar
+	echo "Arquivo extraido com sucesso !! "
+	sleep 2s
+	clear
+	echo "Deseja descompactar outro arquivo? s/n : "
+	read descompactarsn
+	if [ $descompactarsn = "s" ]
+	then
+	clear
+	Descompactar
+	fi
+	if [ $descompactarsn = "n" ]
+	then
+	clear
+	Principal
+	fi
 }
 
 Backup() {
