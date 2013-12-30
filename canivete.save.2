@@ -1,30 +1,37 @@
 #!/bin/bash
-############################################
-#              Canivete v1.0               #
-#      Programa de auxilio GNU/Linux       #
-#               @utor: gNew                #
-#         Licença GPL // br-2013           #
-############################################
+# Canivete
+# Programa de auxilio gnu/linux
 
-lo=0
+# ferramentas a incorporar: # descompactar / compactar
+# player mp3 # acesso a web (links)
+# listar partições # montar cdrom
+# abrir pendrive # visualizar drivers pci
+# visualizar usbs # visualizar ip externo
+# localizar arquivos repitidos via SDS5m
+# editor texto # nivel de bateria
+
+var=0
 
 Login(){
-
 if [ "$(id -u)" != "0" ]; then
-	echo -n "Digite a senha root - "
-	su -c "sh canivete"
-else
-	echo "Logado"
-	sleep 1s
-	lo=1
-	clear
+echo
+echo -n "Digite a senha root - "
+su -c "sh canivete"
 fi
-
-if [ $lo = "0" ]; then
-	exit
+elif [ "$(id -u)" !="0" ]; then
+echo " Senha incorreta. "
+exit
+#su - root -c "sh /home/user/script.sh"
+if [ "$(id -u)" != "1" ]
+echo "Logado"
+sleep 2s
+var=1
 fi
-
 }
+
+Login
+
+clear
 
 Principal () {
 	echo "         ____________"
@@ -51,9 +58,7 @@ Principal () {
 	echo "                  7. Compactar arquivos ou pasta"
 	echo "                      8. Descompactar arquivos"
 	echo "                             9. Sair"
-	echo " "
-	echo "                   ..........................."
-	echo " "
+	echo
 	echo -n "                     Qual a opção desejada? "
 	read opcao
 	case $opcao in
@@ -64,6 +69,7 @@ Principal () {
 		5) Adicionar ;;
 		6) Deletar ;;
 		7) Compactar ;;
+#		7) Backup ;;
 		8) Descompactar ;;
 		9) Sair ;;
 		*) "Opção desconhecida" ; echo ; Principal ;;
@@ -101,9 +107,9 @@ Localizar() {
 	echo "Qual o nome do arquivo a localizar? "
 	read varlocalizar
 	echo -n "Pesquisando ."
-	sleep 0.5s
+	sleep 1s
 	echo -n "."
-	sleep 0.5s
+	sleep 1s
 	echo "."
 	locate $varlocalizar | more
 	echo " "
@@ -111,13 +117,12 @@ Localizar() {
 	read varlocalsave
 	if [ $varlocalsave = "s" ]
 	then
-	echo "Qual nome do novo arquivo? "
-	read nomelog
-	locate $varlocalizar >> $nomelog.log
+	locate $varlocalizar >> localizar.log
 	clear
-	echo "Arquivo $nomelog.log criado com sucesso!"
+	echo "Arquivo localizar.log criado com sucesso!"
 	sleep 2s
 	fi
+	clear
 	Principal
 }
 
@@ -196,10 +201,19 @@ Descompactar() {
 	fi
 }
 
+# Backup() {
+#	for x in '/bin/ls' /etc; do
+#	cp -R /var/log/$x /tmp/$x.bck
+#	done
+# }
+
 Sair(){
 	exit
 }
 
-Login
+if [ $var = "1" ]
+then
+	exit
+fi
 
 Principal
