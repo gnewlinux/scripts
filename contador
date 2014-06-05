@@ -1,7 +1,7 @@
 #!/bin/bash
 # Script de contagem de minutos da maquina em uso.
 # Para testes de bateria de notebook.
-# @utor féliX | 13
+# @utor gNew | 13
 # Arquivo a /bin/contador
 # Em /etc/init.d/rc.local acrentar na ultima linha o comando: contador
 

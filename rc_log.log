@@ -1,0 +1,6 @@
+/etc/rc.local
+/etc/init.d/rc.local
+/etc/rc2.d/S99rc.local
+/etc/rc3.d/S99rc.local
+/etc/rc4.d/S99rc.local
+/etc/rc5.d/S99rc.local

