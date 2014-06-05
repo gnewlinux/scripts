@@ -1,5 +1,5 @@
-Scripts Shell - 2013
-FelixGreen
-
-Testes de pequenos estudos de scripts.
+- Scripts Shell - 2013 - 2014 - 
+#        @utor: gNew          #
+#                             #
+# Pequenos estudos de scripts.#
 
