@@ -1,0 +1,7 @@
+#!/bin/bash
+
+clear
+
+echo " Bem vindo ao BeeShare "
+sleep 2s
+
