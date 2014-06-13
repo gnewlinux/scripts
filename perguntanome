@@ -1,0 +1,9 @@
+#!/bin/bash
+
+echo "Seja bem vindo."
+echo "Qual o seu nome?"
+read nome
+echo "Seu nome é: $nome"
+if ( nome==1 )
+echo "Seu nome é oi!!!"
+

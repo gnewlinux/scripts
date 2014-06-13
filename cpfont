@@ -1,0 +1,4 @@
+#!/bin/bash
+# Copia fontes windows para linux
+
+mount | grep fuseblk

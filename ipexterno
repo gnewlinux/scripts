@@ -1,0 +1,13 @@
+#!/bin/bash
+
+######################### 
+# Descobre o ip externo #
+#########################
+
+clear
+
+echo "Seja bem vindo ao IPEXTERNO 0.1"
+echo "Seu ip externo é:"
+curl ifconfig.me
+echo ""
+echo ""
