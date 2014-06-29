@@ -1,0 +1,37 @@
+#!/bin/bash
+
+teste=0
+
+test -f "/usr/bin/hydra" || teste=1
+
+if [ teste == 1 ]
+then
+sudo apt-get install hydra
+else
+clear
+echo "************************************"
+echo "*                                  *"
+echo "*                                  *"
+echo "*                                  *"
+echo "*                                  *"
+echo "*          HYDRA - FORCE           *"
+echo "*             <----->              *"
+echo "*                                  *"
+echo "*                .                 *"
+echo "*                                  *"
+echo "*                                  *"
+echo "************************************"
+echo ""
+echo ""
+echo "Alvo:"
+read ALVO
+echo "Login"
+read LOGIN
+echo "Wordlist"
+read WORDLIST
+echo "Estilo(ftp,ssh,etc):"
+read ESTILO
+echo "Arquivo de saida: "
+read SAIDA
+hydra -l $LOGIN -P $WORDLIST -o $SAIDA $ALVO $ESTILO
+fi
