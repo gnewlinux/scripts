@@ -1,0 +1,1 @@
+# Hydra v7.5 run at 2014-06-29 05:32:55 on ftp.consex.com.br ftp (hydra  -l consex -P wordlist.txt -o force.txt ftp.consex.com.br ftp)

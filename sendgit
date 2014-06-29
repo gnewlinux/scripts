@@ -1,0 +1,15 @@
+#!/bin/bash
+
+#
+# Subir arquivos no git
+#
+
+
+git add *
+
+echo "Qual mensagem?"
+read MENSAGEM
+
+git commit -m "$MENSAGEM"
+
+git push
