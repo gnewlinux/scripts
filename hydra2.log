@@ -1,0 +1,1 @@
+# Hydra v7.2 run at 2014-07-07 03:43:56 on ftp.alfacastello.com.br ftp (hydra  -l alfacastello -P wordlist.txt -o hydra2.log ftp.alfacastello.com.br ftp

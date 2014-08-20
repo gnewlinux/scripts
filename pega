@@ -1,0 +1,18 @@
+#!/bin/bash
+
+echo " "
+echo " "
+echo "Qual ip gostaria de consulta?"
+echo " "
+echo " "
+read IP
+
+ssh -l root $IP <<END_SCRIPT
+
+ps | grep ppp > dados
+grep pppd dados > dados
+
+
+
+END_SCRIPT
+exit
