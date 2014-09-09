@@ -1,213 +1,222 @@
-#!/bin/bash
-############################################
-#              Canivete v1.0               #
-#      Programa de auxilio GNU/Linux       #
-#               @utor: gNew                #
-#         Licença GPL // br-2013           #
-############################################
+      #!/bin/bash
+      ############################################
+      #              Canivete v1.0               #
+      #      Programa de auxilio GNU/Linux       #
+      #               @utor: gNew                #
+      #               @utor: Rumbler             #
+      #         Licença GPL // br-2013           #
+      ############################################
+      DISTRO=`cat /etc/[A-Za-z]*[_-][rv]e[lr]* 2>&- /dev/null | grep PRETTY_NAME | cut -c 14-25 | cut -d " " -f1`
 
-lo=0
+      clear
 
+      Principal () {
+	      echo "         ____________"
+	      echo "        \              --------------------________ "
+	      echo "      ________________                             --------"
+	      echo "     \                ----------------------------_________-- "
+	      echo "     --------------------------------------------------------   "
+	      echo "   /                                                          \ "
+	      echo -e "   -""                      \033[5;30m\033[42;1;37mCANIVETE v1.0  \033[0;32m""                    \033[0m - "
+	      echo "  -							       -"
+	      echo -e "   -    >  kit de utlidades //"" \033[41;1;37m Debian \033[0m  ""<<"" \033[44;1;37m Slackware    \033[0m    -" 
+	      echo "   \                                                          / "
+	      echo "     ------------------------------------------------_______-   "
+	      echo "           /____________________--------------------            "
+	      echo " "
+	      echo " "
+	      echo -e "                     \033[0;31m Opções :\033[0m"
+	      echo " "
+	      echo "               1. Mostrar Data e Hora"
+	      echo "               2. Atualizar Sistema"
+	      echo "               3. Localizar Arquivo "
+	      echo "               4. Listar usuários cadastrados sitema"
+	      echo "               5. Adicionar um usúario no sistema"
+	      echo "               6. Deletar um usúario no sistema"
+	      echo "               7. Compactar arquivos ou pasta"
+	      echo "               8. Descompactar arquivos"
+	      echo "               9. Sair"
+	      echo " "
+	      echo "                   ..........................."
+	      echo " "
+	      echo -n "                     Qual a opção desejada? "
+	      read opcao
+	      case $opcao in
+		      1) Dataehora ;;
+		      2) Atualizar ;;
+		      3) Localizar ;;
+		      4) Listar ;;
+		      5) Adicionar ;;
+		      6) Deletar ;;
+		      7) Compactar ;;
+		      8) Descompactar ;;
+		      9) Sair ;;
+		      *) "Opção desconhecida" ; echo ; Principal ;;
+	      esac
+      }
 
-: '
-Login(){
+      Dataehora() {
+	      clear
+	      date
+	      sleep 2s
+	      Principal
+      }
 
-if [ "$(id -u)" != "0" ]; then
-	echo -n "Digite a senha root - "
-	su -c "sh canivete"
-else
-	echo "Logado"
-	sleep 1s
-	lo=1
-	clear
-fi
+      Atualizar() {
+      if [ $DISTRO == "Debian" ]; then
+      #executa se o sistema for Debian
+	      clear
+	      echo "Atualizando o sistema... fazendo update dos repositórios... "
+	      sleep 1s
+	      sudo apt-get update
+	      echo "Iniciando Upgrade dos arquivos... "
+	      sudo apt-get upgrade
+	      clearzica
+	      echo -n "."
+	      sleep 1s
+	      echo -n "."
+	      sleep 1s
+	      echo -n "."
+	      sleep 1s
+	      echo " Seu sistema está atualizado!!!"
+	      echo " "
+	      Principal
+	      else 
+	      # executa se o sistema for Slackware
+	      clear
+	      echo "Atualizando os repositórios!"
+	      sleep 1s
+	      clear
+	      echo "Digite a senha do super usúario!"  
+	      su - root -c "slackpkg update"
+	      echo "Atualizando o Sistema"
+	      sleep 1s
+	      clear
+	      echo "Digite a senha do super usúario!"
+	      su - root -c "slackpkg upgrade-all"
+	      clear
+	      echo "Instalando novas dependencias"
+	      sleep 1s
+	      clear
+	      echo "Digite a senha do super usúario!"
+	      su - root -c "slackpkg install-new"
+	      clear
+	      echo "Sistema atualizado!"
+	      sleep 1s
+	      clear	      
+	      Principal
+	      fi   
+	   }
 
-if [ $lo = "0" ]; then
-	exit
-fi
+      Localizar() {
+	      clear
+	      echo "Qual o nome do arquivo a localizar? "
+	      read varlocalizar
+	      echo -n "Pesquisando ."
+	      sleep 0.5s
+	      echo -n "."
+	      sleep 0.5s
+	      echo "."
+	      locate $varlocalizar | more
+	      sleep 0.5s
+	      echo "."
+	      echo " "
+	      echo -n "Gostaria de salvar sua pesquisa em uma arquivo de log? s/n :"
+	      read varlocalsave
+	      if [ $varlocalsave = "s" ]
+	      then
+	      echo "Qual nome do novo arquivo? "
+	      read nomelog
+	      locate $varlocalizar >> $nomelog.log
+	      clear
+	      echo "Arquivo $nomelog.log criado com sucesso!"
+	      sleep 2s
+	      fi
+	      Principal
+      }
 
-}
+      Listar() {
+	      clear
+	      cat /etc/passwd | egrep bash$ | cut -d ":" -f1 | more
+	      echo ""
+	      echo  "-----------------------------------------------------"
+	      echo -e "\033[5;30m\033[1;31m Pressione return para voltar o menu \033[0m"
+	      read opcao
+	      case $opcao in
+		      *) "Voltando ao menu" ; echo ; Principal ;;
+	      esac
+      }
 
-'
+      Adicionar() {
+	      clear
+	      echo -n "Qual o nome do usúario a se adicionar? "
+	      read nome
+	      adduser $nome
+	      Principal
+      }
 
-clear
+      Deletar() {
+	      clear
+	      echo "Qual o nome do usúario a deletar? "
+	      read nome
+	      userdel $nome
+	      Principal
+      }
 
-Principal () {
-	echo "         ____________"
-	echo "        \              --------------------________ "
-	echo "      ________________                             --------"
-	echo "     \                ----------------------------_________-- "
-	echo "     --------------------------------------------------------   "
-	echo "   /                                                          \ "
-	echo "   -                       CANIVETE v1.0                      - "
-	echo "   -             >  kit de utlidades // debian  <        @    - "
-	echo "   \                                                          / "
-	echo "     ------------------------------------------------_______-   "
-	echo "           /____________________--------------------            "
-	echo " "
-	echo " "
-	echo "                             Opções :"
-	echo " "
-	echo "                         1. Data e Hora"
-	echo "                       2. Atualizar Sistema"
-	echo "                       3. Localizar Arquivo "
-	echo "               4. Listar usuários cadastrados sitema"
-	echo "                5. Adicionar um usúario no sistema"
-	echo "                 6. Deletar um usúario no sistema"
-	echo "                  7. Compactar arquivos ou pasta"
-	echo "                      8. Descompactar arquivos"
-	echo "                             9. Sair"
-	echo " "
-	echo "                   ..........................."
-	echo " "
-	echo -n "                     Qual a opção desejada? "
-	read opcao
-	case $opcao in
-		1) Dataehora ;;
-		2) Atualizar ;;
-		3) Localizar ;;
-		4) Listar ;;
-		5) Adicionar ;;
-		6) Deletar ;;
-		7) Compactar ;;
-		8) Descompactar ;;
-		9) Sair ;;
-		*) "Opção desconhecida" ; echo ; Principal ;;
-	esac
-}
+      Compactar() {
+	      clear
+	      echo -n "Gostaria de compactar arquivo ou pasta? a/p : "
+	      read varcompactar
+	      if [ $varcompactar = "a" ]
+	      then
+	      ls
+	      echo "Qual origem e nome do arquivo que gostaria de compactar? "
+	      read origemcompactar
+	      echo "Qual o nome do novo arquivo compactado? "
+	      read novocompactar
+	      tar -zcf $novocompactar.tar $origemcompactar
+	      clear
+	      echo "Arquivo $novocompactar.tar criado com sucesso!!"
+	      echo " "
+	      sleep 2s
+	      Principal
+	      fi
+	      if [ $varcompactar = "p" ]
+	      then
+	      echo "Qual origem e nome da pasta a ser compactada? "
+	      read pastacompactar
+	      echo "Qual o nome do novo arquivo compatado? "
+	      read novacompactar
+	      tar -zcf $novacompactar.tar $pastacompactar
+	      echo "Arquivo $novacompactar.tar criado com sucesso!!"
+	      echo " "
+	      Principal
+	      fi
+      }
 
-Dataehora() {
-	clear
-	date
-	sleep 1s
-	Principal
-}
+      Descompactar() {
+	      clear
+	      ls
+	      echo "Qual arquivo que gostaria de descompactar? // Só não funciona .zip"
+	      read arqdescompactar
+	      tar -xvsf $arqdescompactar
+	      echo "Arquivo extraido com sucesso !! "
+	      sleep 2s
+	      clear
+	      echo "Deseja descompactar outro arquivo? s/n : "
+	      read descompactarsn
+	      if [ $descompactarsn = "s" ]; then
+	      clear
+	      Descompactar
+	      else
+	      clear
+	      Principal
+	      fi
+      }
 
-Atualizar() {
-	clear
-	echo "Atualizando o sistma... fazendo update dos repositórios... "
-	sleep 1s
-	sudo apt-get update
-	echo "Iniciando Upgrade dos arquivos... "
-	sudo apt-get upgrade
-	clear
-	echo -n "."
-	sleep 1s
-	echo -n "."
-	sleep 1s
-	echo -n "."
-	sleep 1s
-	echo " Seu sistema está atualizado!!!"
-	echo " "
-	Principal
-}
-
-Localizar() {
-	clear
-	echo "Qual o nome do arquivo a localizar? "
-	read varlocalizar
-	echo -n "Pesquisando ."
-	sleep 0.5s
-	echo -n "."
-	sleep 0.5s
-	echo "."
-	locate $varlocalizar | more
-	sleep 0.5s
-	echo "."
-	echo " "
-	echo -n "Gostaria de salvar sua pesquisa em uma arquivo de log? s/n :"
-	read varlocalsave
-	if [ $varlocalsave = "s" ]
-	then
-	echo "Qual nome do novo arquivo? "
-	read nomelog
-	locate $varlocalizar >> $nomelog.log
-	clear
-	echo "Arquivo $nomelog.log criado com sucesso!"
-	sleep 2s
-	fi
-	Principal
-}
-
-Listar() {
-	clear
-	cat /etc/passwd | grep bash
-	Principal
-}
-
-Adicionar() {
-	clear
-	echo -n "Qual o nome do usúario a se adicionar? "
-	read nome
-	adduser $nome
-	Principal
-}
-
-Deletar() {
-	clear
-	echo "Qual o nome do usúario a deletar? "
-	read nome
-	userdel $nome
-	Principal
-}
-
-Compactar() {
-	clear
-	echo -n "Gostaria de compactar arquivo ou pasta? a/p : "
-	read varcompactar
-	if [ $varcompactar = "a" ]
-	then
-	ls
-	echo "Qual origem e nome do arquivo que gostaria de compactar? "
-	read origemcompactar
-	echo "Qual o nome do novo arquivo compactado? "
-	read novocompactar
-	tar -zcf $novocompactar.tar $origemcompactar
-	clear
-	echo "Arquivo $novocompactar.tar criado com sucesso!!"
-	echo " "
-	Principal
-	fi
-	if [ $varcompactar = "p" ]
-	then
-	echo "Qual origem e nome da pasta a ser compactada? "
-	read pastacompactar
-	echo "Qual o nome do novo arquivo compatado? "
-	read novacompactar
-	tar -zcf $novacompactar.tar $pastacompactar
-	echo "Arquivo $novacompactar.tar criado com sucesso!!"
-	echo " "
-	Principal
-	fi
-}
-
-Descompactar() {
-	clear
-	ls
-	echo "Qual arquivo que gostaria de descompactar? // Só não funciona .zip"
-	read arqdescompactar
-	tar -xvsf $arqdescompactar
-	echo "Arquivo extraido com sucesso !! "
-	sleep 2s
-	clear
-	echo "Deseja descompactar outro arquivo? s/n : "
-	read descompactarsn
-	if [ $descompactarsn = "s" ]
-	then
-	clear
-	Descompactar
-	fi
-	if [ $descompactarsn = "n" ]
-	then
-	clear
-	Principal
-	fi
-}
-
-Sair(){
-	exit
-}
-
-# Login
-
-Principal
+      Sair(){
+      clear
+      exit 0
+      }
+      
+      Principal 
