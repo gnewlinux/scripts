@@ -1,0 +1,14 @@
+#!/bin/bash
+echo "Alterando a data..."
+
+if [ "$1" == "-a" ]
+then
+ sudo date 010101012010
+ echo "Sua data: 01/01/2010."
+fi
+
+if [ "$1" == "-b" ]
+then
+ sudo ntpdate -u br.pool.ntp.org
+ echo "Sua data foi atualizada."
+fi
