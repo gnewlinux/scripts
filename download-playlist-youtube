@@ -1,0 +1,13 @@
+#!/bin/bash
+# Necessario youtube-dl
+
+# Complete com o link
+
+clear
+
+echo 'Digite o endereço da playlist para download:  '
+
+read endereco
+
+youtube-dl -citk --max-quality FORMAT $endereco
+

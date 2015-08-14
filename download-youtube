@@ -1,0 +1,13 @@
+#!/bin/bash
+#
+# Download video youtube utilizando youtube-dl
+
+clear
+
+echo 'Digite o endereço do video para download: '
+
+read endereco
+
+youtube-dl $endereco
+
+
