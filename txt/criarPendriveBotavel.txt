@@ -1,0 +1,9 @@
+dd if=nomedaimagem.iso of=/dev/sdb bs=1M
+
+// utilizar sempre o sdb e nao sdb1 ou sdb2 etc... pois para fazer o botavel é melhor.
+// destroy disk,  if = INPUT FILE, of = OUTPUT FILE , bs = VELOCIDADE DE BYTES w/r
+
+// bom rodar o sync dpeois do dd para confirmar o w/r.
+
+// para ejetar o pendrive
+eject /dev/sdb

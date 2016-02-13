@@ -1,0 +1,6 @@
+## Analisar as portas mais comuns   ## Esta aqui é fantástica
+
+    nmap --top-ports 5 192.168.1.1
+    nmap --top-ports 10 192.168.1.1
+
+

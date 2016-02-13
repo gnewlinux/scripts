@@ -1,0 +1,3 @@
+#!/bin/bash
+
+ssh -l gnewserv 187.121.162.149
