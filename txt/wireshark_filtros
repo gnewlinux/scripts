@@ -1,0 +1,16 @@
+// Pode ser que ache senhas nao criptografadas
+http matches POST
+http matches login_email
+
+// Pesquisar sobre uma porta
+tcp.port == 21
+
+
+pesquisar nome do campo
+
+
+kain e pipnet
+
+
+arp -a //vitmia
+

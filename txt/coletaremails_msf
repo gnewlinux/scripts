@@ -1,0 +1,7 @@
+search collector
+use gather/search_email_collector
+show options
+set DOMAIN yahoo.com
+set OUTFILE emails_yahoo.txt
+show options
+exploit
