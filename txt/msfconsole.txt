@@ -1,0 +1,92 @@
+# apt-get update
+# apt-get dist-upgrade 
+
+Após realizado a atualização do sistema, tendo a certeza dos pacotes mais atualizados, iniciaremos a instalação das dependências para Metasploit, para isso instale os seguintes pacotes: 
+
+# apt-get install build-essential libreadline-dev libssl-dev libpq5 libpq-dev libreadline5 libsqlite3-dev libpcap-dev openjdk-7-jre git-core autoconf postgresql pgadmin3 curl zlib1g-dev libxml2-dev libxslt1-dev vncviewer libyaml-dev 
+
+INSTALANDO VERSÃO ADEQUADA DO RUBY
+
+Infelizmente, não vem por padrão com uma versão adequada para Linux, para se utilizar com Metasploit, por isso precisaremos baixar e compilar a versão adequada. Para isso, utilizaremos o "rbenv": 
+
+# cd ~
+# git clone git://github.com/sstephenson/rbenv.git .rbenv
+# echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bashrc
+# echo 'eval "$(rbenv init -)"' >> ~/.bashrc
+# exec $SHELL 
+
+# git clone git://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
+# echo 'export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"' >> ~/.bashrc
+# exec $SHELL 
+
+# rbenv install 2.1.6
+# rbenv global 2.1.6
+# ruby -v 
+
+INSTALANDO O NMAP
+
+Uma das ferramentas externas que Metasploit utiliza para digitalização, que não está incluído com as fontes, é o Nmap. Aqui, vamos realizar o download do código fonte mais recente para o Nmap, compilar e instalar: 
+
+# mkdir ~/Desenvolvimento
+# cd ~/Desenvolvimento
+# apt-get install subversion
+# svn co https://svn.nmap.org/nmap
+# cd nmap
+# ./configure
+# make
+# make install
+# make clean 
+
+CONFIGURANDO POSTGRESQL SERVER
+
+Necessariamente primeiro, mudamos para o usuário "postgres" para que possamos criar o usuário a ser utilizado pelo Metasploit, assim como o banco de dados: 
+
+# sudo -s
+# su postgres
+ createuser -P -S MSF -R -D    #Guarde a senha que cadastrar, pois será necessária
+ createdb -O MSF MSF
+ exit 
+
+INSTALANDO METASPLOIT FRAMEWORK
+
+Vamos baixar a última versão do Metasploit Framework via Git, para que possamos utilizar posteriormente o "msfupdate" e assim mantê-lo atualizado: 
+
+# cd /opt
+# git clone https://github.com/rapid7/metasploit-framework.git
+# chown -R `whoami` /opt/metasploit-framework
+# cd metasploit-framework
+# gem install bundler
+# bundle install 
+
+Observação: atualmente, há um bug no Metasploit Framework com Symlinks. Por isso, iremos criar os links para comando, para que possamos usá-los em qualquer usuário e não estar necessariamente na pasta do Metasploit, por isso (porém, para isso), precisamos estar na pasta "metasploit-framework": 
+
+# bash -c 'for MSF in $(ls msf*); do ln -s /opt/metasploit-framework/$MSF /usr/local/bin/$MSF;done' 
+
+Agora iremos criar o arquivo "database.yml", que conterá os parâmetros de configuração que será utilizado pelo Metasploit-Framework: 
+
+produção:
+   adaptador: postgresql
+   banco de dados: msf
+   usuário: msf
+   password: (senha criada no junto com usuário msf)
+   host: 127.0.0.1
+   port: 5432
+   piscina: 75
+   timeout: 5
+
+Agora, iremos criar a variável de ambiente para que ele seja carregado pelo "msfconsole" ao executar a variável em sua shell atual: 
+
+# sh -c "echo export MSF_DATABASE_CONFIG=/opt/metasploit-framework/config/database.yml >> /etc/profile"
+# source /etc/profile 
+
+PRIMEIRA EXECUÇÃO
+
+Feitos todos os procedimentos acima, estamos pronto para executar o Metasploit pela sua primeira vez. 
+
+Na primeira vez ao ser executado, ele irá criar as entradas necessárias para o Metasploit no banco de dados, por isso pode levar algum tempo para carregar. 
+
+# msfconsole 
+
+
+
+## PS precisei instalar o pacote ruby-dev para instalacao de algumas gems que nao estava aceitando.
