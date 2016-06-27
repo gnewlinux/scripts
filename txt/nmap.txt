@@ -3,4 +3,231 @@
     nmap --top-ports 5 192.168.1.1
     nmap --top-ports 10 192.168.1.1
 
+# tipos de nmap
+
+nmap -sP # scan de maquinas
+nmap -PO # agressivo
+
+
+# Analisar múltiplos ips ou uma rede subnet
+
+nmap 192.168.1.1 192.168.1.2 192.168.1.
+nmap 192.168.1.1,2,3
+nmap 192.168.1.1-20
+nmap 192.168.1.*
+nmap 192.168.1.0/24
+
+# Seleccionar os alvos a partir de um ficheiro
+
+cat > /root/Desktop/alvos.txt
+
+# E dentro desse ficheiro os nossos alvos:
+
+test.com
+192.168.1.0/24
+google.pt
+facebook.com
+8.8.8.8
+
+nmap -iL /root/Desktop/alvos.txt
+ 
+
+# Excluir alvos de uma rede
+
+nmap 192.168.1.0/24 --exclude 192.168.1.5
+nmap 192.168.1.0/24 --exclude 192.168.1.5,192.168.1.254
+nmap -iL /tmp/scanlist.txt --excludefile /tmp/exclude.txt
+
+# Tentar detectar o Sistema Operativo e a sua versão:
+
+nmap -A 192.168.1.254
+nmap -v -A 192.168.1.1
+nmap -A -iL/root/Desktop/alvos.txt
+
+# Descobrir se o alvo é protegido por uma firewall:
+
+nmap -sA 192.168.1.254
+nmap -sA facebook.com
+
+# Como Analisar quando o alvo é protegido por uma firewall.
+
+nmap -PN 192.168.1.1
+nmap -PN server1.cyberciti.biz
+
+# Analisar um alvo com o IPv6:
+
+nmap -6  IPv6-Address-Here nmap -6  google.pt nmap -6  2607:f0d0:1002:51::4 
+nmap -v -A -6  2607:f0d0:1002:51::4
+ 
+# Analise e descoberta de Host ligados.
+# Tecnica conhecida por ping ou descoberta de alvos:
+
+nmap -sP 192.168.1.0/24
+
+# Analise rápida:
+
+nmap -F 192.168.1.1
+ 
+# Adiciona a razão pelo qual o Nmap diz que tem a porta aberta:
+
+nmap --reason 192.168.2.2
+nmap --reason google.pt
+ 
+# Apenas mostra portas abertas (ou possíveis abertas):
+
+nmap --open 192.168.1.1
+nmap --open google.pt
+
+# Mostra todos os pacotes enviados e recebidos:
+
+nmap --packet-trace 192.168.1.1
+nmap --packet-trace facebook.com
+
+# Mostra as saídas instaladas assim como os caminhos percorridos:
+
+nmap --iflist
+nmap --iflist
+
+# Analisar portas especificas:
+# Utilizando o comando nmap -p [port] hostName
+## Analisar  porta  80
+
+nmap -p 80 192.168.2.2
+
+## Analisar porta 80 por  TCP
+
+nmap -p T:80 192.168.2.2
+
+##Analisar porta 53 por  UDP
+
+nmap -p U:53 192.168.1.1
+ 
+## Analizar duas portas##
+
+nmap -p 80,443 192.168.1.1
+ 
+## Analisar de x a x porta ##
+
+nmap -p 80-200 192.168.1.1
+
+## Combinação de todas  ##
+
+nmap -p U:53,111,137,T:21-25,80,139,8080 192.168.2.2
+nmap -p U:53,111,137,T:21-25,80,139,8080 facebook.com
+nmap -v -sU -sT -p U:53,111,137,T:21-25,80,139,8080 192.168.2.2
+ 
+## Analisar com um  * wildcard ##
+
+nmap -p "*" 192.168.1.1
+
+## Analisar as portas mais comuns   ## Esta aqui é fantástica
+
+nmap --top-ports 5 192.168.1.1
+nmap --top-ports 10 192.168.1.1
+
+# A maneira de Analise mais rápida de portas abertas:
+
+nmap -T5 facebook.com
+ 
+# Detectar sistema operativo do alvo:
+
+nmap -O 192.168.2.2
+ 
+# Analisar que programas e versão correm nas portas abertas:
+
+nmap -sv 192.168.2.2
+
+Dará algo assim:
+
+Host is up (0.090s latency).
+Not shown: 845 closed ports, 153 filtered ports
+PORT STATE SERVICE VERSION
+21/tcp open ftp ProFTPD or KnFTPD
+80/tcp open http Apache httpd 2.2.14 ((Unix))
+Service Info: OS: Unix
+
+
+# Analisar um alvo utilizando TCP ACK (PA) e TCP Syn (PS) ping
+# Se a firewall estiver bloqueando os pings normais (ICMP) utilizar o seguinte metodo de descoberta:
+
+nmap -PS 192.168.2.2
+nmap -PS 80,21,443 192.168.2.2
+nmap -PS 192.168.2.2
+nmap -PS 80,21,200-512 192.168..2.2
+
+# Analisar um alvo utilizando o protocolo pig pelo IP
+
+nmap -PO 192.168.2.2 
+ 
+# Analisar um alvo utilizando UDP ping
+
+nmap -PU 192.168.2.2 
+
+# Descobrir as portas mais utilizadas usando a analise TCP SYN
+
+### Analise camuflada##
+
+nmap -sS 192.168.1.1
+### A portas TCP mais utilizadas
+
+nmap -sT 192.168.1.1
+Exemplo 23 Analisar serviços UDO (Analise UDP):
+
+nmap -sU 192.268.2.2
+ 
+Exemplo 24: Analisar o Protocolo IP
+
+#Esta analise permite detectar quais são os protocolos (TCP,ICMP,IGMP,etc) que o alvo suporta:
+
+nmap -sO 192.168.2.2
+nmap -sO facebook.com
+ 
+
+Exemplo 25: procurar falhas na firewall
+
+##  Uma analise nula para fazer a firewall gerar uma resposta##
+
+nmap -sN 192.168.2.2
+## Verificação de firewall
+
+nmap -sF 192.168.2.2
+## Faz os sets FIN, PSH, e URG, serem analisados.
+
+nmap -sX 192.168.2.2
+  
+Exemplo 26: Analisar a firewall com pacotes fragementados
+
+nmap -f 192.168.2.2
+nmap -f fw2.nixcraft.net.in
+nmap -f 15 google.pt
+## Escolham o vosso offset com a opçãp –mtu ##
+
+ 
+
+nmap --mtu 32 192.168.1.1
+Exemplo 27: Iscos! A opção -D faz com que o alvo pense que está a ser analisado por mais maquinas.
+
+#O IDS fará com que se reporte entre 5  a 10 portas a cada IP mas nunca sabe quais são os verdadeiros e os falsos.
+
+nmap -n -Ddecoy-ip1,decoy-ip2,your-own-ip,decoy-ip3,decoy-ip4 remote-host-ip
+nmap -n -D192.168.1.5,10.5.1.2,172.1.2.4,3.4.2.1 192.168.1.5
+Exemplo 28 Analisar com o endereço MAC alterado :
+
+nmap --spoof-mac MAC-ADDRESS-HERE 192.168.2.2
+### Utilizar o endereço MAC aleatório ###
+
+
+nmap -v -sT -PN --spoof-mac 0 192.168.1.1
+ 
+
+ 
+
+ 
+
+Exemplo 29:Salvar as informações obtidas para um ficheiro:
+
+nmap 192.168.2.2 > output.txt
+nmap -oN /path/to/filename 192.168.2.2
+nmap -oN output.txt 192.168.2.2
+
 
