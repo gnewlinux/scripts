@@ -1,0 +1,16 @@
+########## COMANDOS NMAP
+
+#COMANDO       #PACOTES
+nmap padrão:   1035  
+opção  -sV:    1062  # Modo de versões
+opção  -O:     1113  # Modo de sistema operacional
+opção  -sS:    1091  # Modo SIM ( só requisitar )
+opção  -su:    2002
+opção  -p:     6
+opção  -p -O:  30
+opcao  -f:     3004  # Fragmenta o pacote
+
+# Confundir Firewall
+nmap -D 192.168.1.10,192.168.1.20,192.168.1.30 192.168.1.1 < ip de scan
+opção  -D:     1080  # Modo Decoy ( barulhenta mas a todos ) *
+
