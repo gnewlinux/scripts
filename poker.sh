@@ -7,7 +7,7 @@ aleatorio()
 }
 
 dobraValor() {
-	apostaAtual=$(( aposta + 2 ))
+	apostaAtual=$(( aposta * 2 ))
 }
 
 valorTotal=50
