@@ -3,3 +3,4 @@
 #                             #
 # Pequenos estudos de scripts.#
 
+(ShellScript)(telegramapi.sh) Used to send mensages via telegram, with a TelegramBOT.
